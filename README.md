@@ -1,10 +1,10 @@
-## Three.js-Projekt
+# Three.js-Projekt
 
-# Börja med att skriva följande i terminalen:
+### Börja med att skriva följande i terminalen:
 
 npm install
 
-Starta programmet genom att skriva följande kommando i terminalen:
+### Starta programmet genom att skriva följande kommando i terminalen:
 
 npm run dev
 
