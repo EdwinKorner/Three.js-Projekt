@@ -1,7 +1,7 @@
 const winWidth = window.innerWidth;
 const winHeight = window.innerHeight;
 // global variables
-let scene, camera, renderer, controls, cube;
+let scene, camera, renderer, controls, cube, rain, starGeo, rainCount = 15000;
 let objects = [];
 
 const gui = new dat.GUI();
@@ -79,9 +79,36 @@ if (intersects.length > 0) {
     }
   }
 
-// append container to dom element
+  // append container to dom element
   document.getElementById("container").appendChild(renderer.domElement);
+  
+  //stars in background
+  
+  
+  starGeo = new THREE.PlaneGeometry();
+  for(let i=0;i<rainCount;i++) {
+    star = new THREE.Vector3(
+      Math.random() * 400 - 200,
+      Math.random() * 500 - 250,
+      Math.random() * 400 - 200
+    );
+    star.velocity = {};
+    star.velocity = 0;
+    starGeo.vertices.push(star);
+  }
+  rainMaterial = new THREE.PointsMaterial({
+    color: 0xaaaaaa,
+    size: 0.1,
+    transparent: true
+  });
+  rain = new THREE.Points(starGeo,rainMaterial);
+  scene.add(rain);
+  starGeo.vertices.forEach(p => {
+    p.velocity -= 0.1 + Math.random() * 0.1;
+    p.y += p.velocity;
+  });
 }
+
 // update loop
 function update() {
   requestAnimationFrame(update);
