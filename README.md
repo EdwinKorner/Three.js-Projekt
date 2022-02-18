@@ -14,3 +14,5 @@ Programmet består av en kub med olika ljuseffekter på sig samt ett kontrollfö
 Kuben får en ny färg varje gång sidan startas samt när man klickar på kuben.
 
 I bakgrunden är det stjärnor som renderas på slumpmässiga platser när sidan startas.
+
+[Link to github](https://github.com/EdwinKorner/Three.js-Projekt)
