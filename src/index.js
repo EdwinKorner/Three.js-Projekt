@@ -1,6 +1,8 @@
 const winWidth = window.innerWidth;
 const winHeight = window.innerHeight;
+
 // global variables
+
 let scene, camera, renderer, controls, cube, rain, starGeo, rainCount = 15000;
 let objects = [];
 
@@ -16,6 +18,7 @@ function init() {
   camera.position.z = 3;
 
 //lighting
+
   const hemisphere = new THREE.HemisphereLight(0xffffff, 0xff0000, 1);
   scene.add(hemisphere);
 const directional = new THREE.DirectionalLight(0xffffff, 0.5);
@@ -23,10 +26,13 @@ const directional = new THREE.DirectionalLight(0xffffff, 0.5);
 
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(winWidth, winHeight);
+
 //geometry
+
   const geometry = new THREE.BoxGeometry(1, 1, 1);
 
-//random color function
+//random color function on the cube
+
   function generateRandomColor() {
 	var letters = '0123456789ABCDEF';
 	var color = '#';
@@ -48,20 +54,20 @@ const directional = new THREE.DirectionalLight(0xffffff, 0.5);
 	roughness: 0.4,
 });
   
-
+//adding properties to material gui
   const materialGUI = gui.addFolder("Material");
   materialGUI.add(material, 'metalness', 0, 1);
   materialGUI.add(material, 'roughness', 0, 1);
-  
-
-  
+   
   //mesh
+
   cube = new THREE.Mesh(geometry, material);
   scene.add(cube);
 
   objects.push(cube);
   
 //onclick for raycaster
+
   document.addEventListener("mousedown", onMouseDown);
 function onMouseDown(event) {
     event.preventDefault();
@@ -80,10 +86,10 @@ if (intersects.length > 0) {
   }
 
   // append container to dom element
+
   document.getElementById("container").appendChild(renderer.domElement);
   
   //stars in background
-  
   
   starGeo = new THREE.PlaneGeometry();
   for(let i=0;i<rainCount;i++) {
@@ -110,11 +116,13 @@ if (intersects.length > 0) {
 }
 
 // update loop
+
 function update() {
   requestAnimationFrame(update);
   renderer.render(scene, camera);
-  //rotation for cube
+
+  //rotation speed for cube
+
   cube.rotation.x += 0.005;
   cube.rotation.y += 0.005;
 }
-
